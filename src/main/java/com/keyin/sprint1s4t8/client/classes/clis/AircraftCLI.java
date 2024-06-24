@@ -48,11 +48,14 @@ public class AircraftCLI {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.err.println("URL");
+            System.err.println("URL Is Not Found");
             System.exit(1);
         }
+        if(args[0] == "localhost808/getAircraftForPassenger")
 
-        String serverURL = args[0];
+        String serverURL = args[0]{
+                cliApp.getListOfAircraftForPassnegers()
+        }
 
         AircraftCLI cliApp = new AircraftCLI();
 
