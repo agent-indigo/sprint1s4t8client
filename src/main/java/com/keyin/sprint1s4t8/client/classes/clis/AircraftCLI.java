@@ -11,7 +11,7 @@ public class AircraftCLI {
     public String generateAircraftReport() {
         List<AircraftModel> aircrafts = getAircraftClient().getAllAircrafts();
 
-        StringBuffer report = new StringBuffer();
+        StringBuilder report = new StringBuilder();
 
         for (AircraftModel aircraft : aircrafts) {
             report.append(aircraft.getModel());
@@ -47,23 +47,25 @@ public class AircraftCLI {
     }
 
     public static void main(String[] args) {
-        for (String arg : args) {
-            System.out.println(arg);
+        if (args.length == 0) {
+            System.err.println("Please provide the server URL as a command-line argument.");
+            System.exit(1);
         }
-
-        AircraftCLI cliApp = new AircraftCLI();
 
         String serverURL = args[0];
 
-        if (serverURL != null && !serverURL.isEmpty()) {
+        AircraftCLI cliApp = new AircraftCLI();
 
+        if (serverURL != null && !serverURL.isEmpty()) {
             AircraftClient aircraftClient = new AircraftClient();
             aircraftClient.setServerURL(serverURL);
 
             cliApp.setAircraftClient(aircraftClient);
 
             cliApp.generateAircraftReport();
+        } else {
+            System.err.println("Invalid server URL provided.");
+            System.exit(1);
         }
     }
 }
-
