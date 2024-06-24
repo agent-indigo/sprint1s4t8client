@@ -48,7 +48,7 @@ public class AircraftCLI {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.err.println("URL");
+            System.err.println("Please enter a URL");
             System.exit(1);
         }
 
