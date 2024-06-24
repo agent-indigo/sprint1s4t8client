@@ -48,7 +48,7 @@ public class AircraftCLI {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.err.println("Please provide the server URL as a command-line argument.");
+            System.err.println("URL");
             System.exit(1);
         }
 
