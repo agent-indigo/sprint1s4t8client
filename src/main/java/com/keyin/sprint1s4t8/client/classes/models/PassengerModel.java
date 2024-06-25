@@ -21,6 +21,23 @@ public final class PassengerModel extends Model {
     public PassengerModel() {
         super();
     }
+
+    /**
+     * @return
+     */
+    @Override
+    public AircraftModel[] getAircrafts() {
+        return new AircraftModel[0];
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public AirportModel[] getAirports() {
+        return new AirportModel[0];
+    }
+
     public String getFirst() {
         return first;
     }

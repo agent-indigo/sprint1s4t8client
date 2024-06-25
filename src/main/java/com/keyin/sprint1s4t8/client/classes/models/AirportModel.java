@@ -18,6 +18,23 @@ public final class AirportModel extends Model {
     public AirportModel() {
         super();
     }
+
+    /**
+     * @return
+     */
+    @Override
+    public AircraftModel[] getAircrafts() {
+        return new AircraftModel[0];
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public AirportModel[] getAirports() {
+        return new AirportModel[0];
+    }
+
     public String getName() {
         return name;
     }
