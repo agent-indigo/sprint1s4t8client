@@ -35,8 +35,11 @@ public final class CityClient extends Client {
     }
     public String add(CityModel city) {
         try {
+            this.output = mapper.writeValueAsBytes(city);
             this.url = URL.of(uri, null);
             this.connection = (HttpURLConnection) url.openConnection();
+            this.outputStream = connection.getOutputStream();
+            outputStream.write(output, 0, output.length);
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setRequestMethod("POST");
@@ -46,11 +49,14 @@ public final class CityClient extends Client {
             return bullshit.getStackTrace().toString();
         }
     }
-    public String edit(String id, CityModel upcdte) {
+    public String edit(String id, CityModel update) {
         this.address = address + id;
         try {
+            this.output = mapper.writeValueAsBytes(update);
             this.url = URL.of(uri, null);
             this.connection = (HttpURLConnection) url.openConnection();
+            this.outputStream = connection.getOutputStream();
+            outputStream.write(output, 0, output.length);
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setRequestMethod("PUT");

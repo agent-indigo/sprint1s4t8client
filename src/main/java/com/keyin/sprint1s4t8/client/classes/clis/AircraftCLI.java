@@ -1,131 +1,51 @@
 package com.keyin.sprint1s4t8.client.classes.clis;
-
+import com.keyin.sprint1s4t8.client.classes.abstracts.CLI;
 import com.keyin.sprint1s4t8.client.classes.clients.AircraftClient;
 import com.keyin.sprint1s4t8.client.classes.models.AircraftModel;
-import com.keyin.sprint1s4t8.client.classes.models.AirportModel;
-import com.keyin.sprint1s4t8.client.classes.models.PassengerModel;
-
 import java.util.List;
-
-public class AircraftCLI {
-    private AircraftClient aircraftClient;
-
-    public String generateAircraftReport() {
-        List<AircraftModel> aircrafts = getAircraftClient().getAllAircrafts();
-
-        StringBuilder report = new StringBuilder();
-
-        for (AircraftModel aircraft : aircrafts) {
-            report.append(aircraft.getModel());
-            report.append(" - ");
-            report.append(aircraft.getAirline());
-            report.append(" - ");
-            report.append(aircraft.getCapacity());
-
-            if (aircrafts.indexOf(aircraft) != (aircrafts.size() - 1)) {
-                report.append(", ");
-            }
-        }
-
-        System.out.println(report.toString());
-
-        return report.toString();
+public final class AircraftCLI extends CLI {
+    private AircraftClient client;
+    private AircraftModel plane;
+    private List<AircraftModel> planes;
+    public AircraftCLI() {
+        super();
+        this.client = new AircraftClient();
+        this.planes = client.list();
     }
-
-    private void listAircrafts() {
-        System.out.println(getAircraftClient().getResponseFromHTTPRequest());
-    }
-
-    private void listAirportsInCities() {
-        List<AirportModel> airports = getAircraftClient().getAllAirports();
-
-        for (AirportModel airport : airports) {
-            System.out.println("Airport: " + airport.getName() + " is in City: " + airport.getCity().getName());
+    @Override
+    public String list() {
+        for (AircraftModel plane : planes) {
+            response.append(plane.getId());
+            response.append(",");
+            response.append(plane.getAirline());
+            response.append(",");
+            response.append(plane.getModel());
+            response.append(",");
+            response.append(plane.getCapacity());
+            if (planes.indexOf(plane) != planes.size() - 1) response.append("\n");
         }
+        return response.toString();
     }
-
-    private void listAircraftPassengers() {
-        List<PassengerModel> passengers = getAircraftClient().getAllPassengers();
-
-        for (PassengerModel passenger : passengers) {
-            System.out.println("Passenger: " + passenger.getFirst() + " " + passenger.getLast() + " has traveled on:");
-            for (AircraftModel aircraft : passenger.getAircrafts()) {
-                System.out.println("    Aircraft: " + aircraft.getModel() + " (" + aircraft.getAirline() + ")");
-            }
-        }
+    @Override
+    public String show(String id) {
+        this.plane = client.show(id);
+        response.append(plane.getId());
+        response.append(",");
+        response.append(plane.getAirline());
+        response.append(",");
+        response.append(plane.getModel());
+        response.append(",");
+        response.append(plane.getCapacity());
+        return response.toString();
     }
-
-    private void listAircraftTakeOffAndLand() {
-        List<AircraftModel> aircrafts = getAircraftClient().getAllAircrafts();
-
-        for (AircraftModel aircraft : aircrafts) {
-            System.out.println("Aircraft: " + aircraft.getModel() + " (" + aircraft.getAirline() + ") can take off and land at:");
-            for (AirportModel airport : aircraft.getAirports()) {
-                System.out.println("    Airport: " + airport.getName());
-            }
-        }
+    public void add(AircraftModel aircraft) {
+        client.add(aircraft);
     }
-
-    private void listPassengerUsedAirports() {
-        List<PassengerModel> passengers = getAircraftClient().getAllPassengers();
-
-        for (PassengerModel passenger : passengers) {
-            System.out.println("Passenger: " + passenger.getFirst() + " " + passenger.getLast() + " has used airports:");
-            for (AirportModel airport : passenger.getAirports()) {
-                System.out.println("    Airport: " + airport.getName());
-            }
-        }
+    public void edit(String id, AircraftModel update) {
+        client.edit(id, update);
     }
-
-    public AircraftClient getAircraftClient() {
-        if (aircraftClient == null) {
-            aircraftClient = new AircraftClient();
-        }
-
-        return aircraftClient;
-    }
-
-    public void setAircraftClient(AircraftClient aircraftClient) {
-        this.aircraftClient = aircraftClient;
-    }
-
-    public static void main(String[] args) {
-        if (args.length < 2) {
-            System.err.println("Please enter a URL and an option (1-4).");
-            System.exit(1);
-        }
-
-        String serverURL = args[0];
-        String option = args[1];
-
-        AircraftCLI cliApp = new AircraftCLI();
-
-        if (serverURL != null && !serverURL.isEmpty()) {
-            AircraftClient aircraftClient = new AircraftClient();
-            aircraftClient.setServerURL(serverURL);
-
-            cliApp.setAircraftClient(aircraftClient);
-
-            switch (option) {
-                case "1":
-                    cliApp.listAirportsInCities();
-                    break;
-                case "2":
-                    cliApp.listAircraftPassengers();
-                    break;
-                case "3":
-                    cliApp.listAircraftTakeOffAndLand();
-                    break;
-                case "4":
-                    cliApp.listPassengerUsedAirports();
-                    break;
-                default:
-                    System.err.println("Invalid option provided. Please enter a number between 1 and 4.");
-                    System.exit(1);
-            }
-        } else {
-            System.err.println("Invalid server URL provided.");
-            System.exit(1);
-        }
+    @Override
+    public void delete(String id) {
+        client.delete(id);
     }
 }
