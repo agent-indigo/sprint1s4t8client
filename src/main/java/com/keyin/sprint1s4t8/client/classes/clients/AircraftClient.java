@@ -1,6 +1,8 @@
 package com.keyin.sprint1s4t8.client.classes.clients;
 
 import com.keyin.sprint1s4t8.client.classes.models.AircraftModel;
+import com.keyin.sprint1s4t8.client.classes.models.AirportModel;
+import com.keyin.sprint1s4t8.client.classes.models.PassengerModel;
 
 import java.io.IOException;
 import java.net.URI;
@@ -81,5 +83,13 @@ public class AircraftClient {
         }
 
         return client;
+    }
+
+    public List<AirportModel> getAllAirports() {
+        return List.of();
+    }
+
+    public List<PassengerModel> getAllPassengers() {
+        return List.of();
     }
 }
