@@ -35,7 +35,7 @@ public class AircraftClientTest {
     public void  testAircraftList(){
         AircraftCLI aircraftCLI = new AircraftCLI();
 
-        AircraftModel aircraft = new AircraftModel();
+        AircraftModel aircraft = new AircraftModel("Boeing 737", "Airline A", 150);
         aircraft.setAirline("WestJet");
         aircraft.setModel("737");
         aircraft.setCapacity(200);

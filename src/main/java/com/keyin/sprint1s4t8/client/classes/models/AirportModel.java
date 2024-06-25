@@ -1,5 +1,7 @@
 package com.keyin.sprint1s4t8.client.classes.models;
 import com.keyin.sprint1s4t8.client.classes.abstracts.Model;
+import com.keyin.sprint1s4t8.client.classes.clis.AircraftClientCLI;
+
 public final class AirportModel extends Model {
     private String name;
     private String code;
@@ -15,9 +17,26 @@ public final class AirportModel extends Model {
         this.code = code;
         this.city = city;
     }
-    public AirportModel() {
+    public AirportModel(String jfkInternational, AircraftClientCLI.CityModel newYork) {
         super();
     }
+
+    /**
+     * @return
+     */
+    @Override
+    public AircraftModel[] getAircrafts() {
+        return new AircraftModel[0];
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public AirportModel[] getAirports() {
+        return new AirportModel[0];
+    }
+
     public String getName() {
         return name;
     }
