@@ -1,3 +1,5 @@
+
+
 package com.keyin.sprint1s4t8.client.classes.clis;
 import com.keyin.sprint1s4t8.client.classes.models.CityModel;
 import com.keyin.sprint1s4t8.client.classes.abstracts.CLI;
@@ -45,3 +47,4 @@ public final class CityCLI extends CLI {
         client.delete(id);
     }
 }
+
