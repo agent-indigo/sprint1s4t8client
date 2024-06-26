@@ -92,43 +92,46 @@ public class AircraftCLI {
     }
 
     public static void main(String[] args) {
-        if (args.length < 2) {
+        if (args.length < 1) {
             System.err.println("Please enter a URL and an option (1-4).");
             System.exit(1);
         }
 
         String serverURL = args[0];
-        String option = args[1];
+        //String option = args[1];
 
         AircraftCLI cliApp = new AircraftCLI();
+        cliApp.getAircraftClient().setServerURL(serverURL);
+        cliApp.generateAircraftReport();
 
-        if (serverURL != null && !serverURL.isEmpty()) {
-            AircraftClient aircraftClient = new AircraftClient();
-            aircraftClient.setServerURL(serverURL);
-
-            cliApp.setAircraftClient(aircraftClient);
-
-            switch (option) {
-                case "1":
-                    cliApp.listAirportsInCities();
-                    break;
-                case "2":
-                    cliApp.listAircraftPassengers();
-                    break;
-                case "3":
-                    cliApp.listAircraftTakeOffAndLand();
-                    break;
-                case "4":
-                    cliApp.listPassengerUsedAirports();
-                    break;
-                default:
-                    System.err.println("Invalid option provided. Please enter a number between 1 and 4.");
-                    System.exit(1);
-            }
-        } else {
-            System.err.println("Invalid server URL provided.");
-            System.exit(1);
-        }
+//        if (serverURL != null && !serverURL.isEmpty()) {
+//            AircraftClient aircraftClient = new AircraftClient();
+//            aircraftClient.setServerURL(serverURL);
+//
+//            cliApp.setAircraftClient(aircraftClient);
+//
+//            switch (option) {
+//                case "1":
+//                    cliApp.listAirportsInCities();
+//                    break;
+//                case "2":
+//                    cliApp.listAircraftPassengers();
+//                    break;
+//                case "3":
+//                    cliApp.listAircraftTakeOffAndLand();
+//                    break;
+//                case "4":
+//                    cliApp.listPassengerUsedAirports();
+//                    break;
+//                default:
+//                    System.err.println("Invalid option provided. Please enter a number between 1 and 4.");
+//                    System.exit(1);
+//            }
+//        } else {
+//            System.err.println("Invalid server URL provided.");
+//            System.exit(1);
+//        }
+//    }
     }
 }
 
