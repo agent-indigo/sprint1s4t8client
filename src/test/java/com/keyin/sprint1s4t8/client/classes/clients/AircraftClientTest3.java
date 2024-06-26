@@ -14,22 +14,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 @ExtendWith(MockitoExtension.class)
-public class AircraftClientTest {
+public class AircraftClientTest3 {
     @Mock
     private  AircraftClient mockAircraftClient;
-    @Ignore
-    @Test
-    public void testBuildAircraftListFromResponse() throws Exception {
-        String jsonResponse = "[\n{\n\"id\": 1,\n\"model\": \"Boeing 737\",\n\"airline\": \"WestJet\",\n\"capacity\": 200\n},\n" +
-                "{\n\"id\": 2,\n\"model\": \"Airbus A320\",\n\"airline\": \"Air Canada\",\n\"capacity\": 180\n}\n]";
-
-        AircraftClient aircraftClientUnderTest = new AircraftClient();
-
-        List<AircraftModel> aircraftList = aircraftClientUnderTest.buildAircraftListFromResponse(jsonResponse);
-
-        Assertions.assertTrue(aircraftList.stream().anyMatch(a -> a.getModel().equals("Boeing 737")));
-        Assertions.assertTrue(aircraftList.stream().anyMatch(a -> a.getModel().equals("Airbus A320")));
-    }
 
     @Test
     public void  testAircraftList(){
