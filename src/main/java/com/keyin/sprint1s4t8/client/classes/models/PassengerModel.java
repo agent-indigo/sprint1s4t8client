@@ -1,43 +1,18 @@
 package com.keyin.sprint1s4t8.client.classes.models;
+import java.util.LinkedList;
 import com.keyin.sprint1s4t8.client.classes.abstracts.Model;
 public final class PassengerModel extends Model {
     private String first;
     private String last;
     private String phone;
     private CityModel city;
-    public PassengerModel(
-        int id,
-        String first,
-        String last,
-        String phone,
-        CityModel city
-    ) {
-        super(id);
-        this.first = first;
-        this.last = last;
-        this.phone = phone;
-        this.city = city;
-    }
+    private LinkedList<AircraftModel> planes;
+    private LinkedList<AirportModel> airports;
     public PassengerModel() {
         super();
+        this.planes = new LinkedList<AircraftModel>();
+        this.airports = new LinkedList<AirportModel>();
     }
-
-    /**
-     * @return
-     */
-    @Override
-    public AircraftModel[] getAircrafts() {
-        return new AircraftModel[0];
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public AirportModel[] getAirports() {
-        return new AirportModel[0];
-    }
-
     public String getFirst() {
         return first;
     }
@@ -61,5 +36,23 @@ public final class PassengerModel extends Model {
     }
     public void setCity(CityModel city) {
         this.city = city;
+    }
+    public LinkedList<AircraftModel> getPlanes() {
+        return planes;
+    }
+    public void addPlane(AircraftModel plane) {
+        planes.addLast(plane);
+    }
+    public void deletePlane(int id) {
+        planes.remove(id);
+    }
+    public LinkedList<AirportModel> getAirports() {
+        return airports;
+    }
+    public void addAirport(AirportModel airport) {
+        airports.addLast(airport);
+    }
+    public void deleteAirport(int index) {
+        airports.remove(index);
     }
 }

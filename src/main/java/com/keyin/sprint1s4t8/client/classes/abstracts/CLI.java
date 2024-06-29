@@ -8,7 +8,7 @@ public abstract class CLI implements Commands {
     @Override
     public abstract String list();
     @Override
-    public abstract String show(String id);
+    public abstract String show(int id);
     @Override
-    public abstract void delete(String id);
+    public abstract void delete(int id);
 }
