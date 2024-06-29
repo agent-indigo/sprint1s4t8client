@@ -3,7 +3,6 @@ import com.keyin.sprint1s4t8.client.interfaces.Requests;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URL;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -16,9 +15,6 @@ public abstract class Client implements Requests {
     protected URL url;
     protected HttpURLConnection connection;
     protected HttpResponse<String> response;
-    protected String requestBody;
-    protected OutputStream outputStream;
-    protected byte[] output;
     protected String responseBody;
     protected ObjectMapper mapper;
     public Client(String category) {
@@ -35,23 +31,22 @@ public abstract class Client implements Requests {
             );
             System.out.printf("Status: %d", response.statusCode());
             this.responseBody = response.body();
-        } catch (IOException | InterruptedException fuckup) {
-            fuckup.printStackTrace();
+        } catch (IOException | InterruptedException exception) {
+            exception.printStackTrace();
         }
         return responseBody;
     }
     @Override
-    public final String delete(String id) {
+    public final String delete(int id) {
         this.address = address + id;
         try {
             this.url = URL.of(uri, null);
             this.connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestMethod("DELETE");
-            connection.setRequestProperty("Content-Type", "application/json");
             return connection.getResponseMessage().toString();
-        } catch (IOException blyat) {
-            return blyat.getStackTrace().toString();
+        } catch (IOException ioException) {
+            return ioException.getStackTrace().toString();
         }
     }
 }
