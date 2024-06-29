@@ -16,12 +16,6 @@ public final class CityModel extends Model {
     public void setName(String name) {
         this.name = name;
     }
-    public ProvTerrCode getProvince() {
-        return provTerrCode;
-    }
-    public void setProvince(ProvTerrCode provTerrCode) {
-        this.provTerrCode = provTerrCode;
-    }
     public ProvTerrCode getProvTerrCode() {
         return provTerrCode;
     }

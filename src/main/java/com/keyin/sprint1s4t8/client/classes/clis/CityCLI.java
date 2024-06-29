@@ -22,7 +22,7 @@ public final class CityCLI extends CLI {
             response.append(",");
             response.append(city.getName());
             response.append(",");
-            response.append(city.getProvince());
+            response.append(city.getProvTerrCode());
             if (cities.indexOf(city) < cities.size()) response.append("\n");
         }
         return response.toString();
@@ -34,14 +34,14 @@ public final class CityCLI extends CLI {
         response.append(",");
         response.append(city.getName());
         response.append(",");
-        response.append(city.getProvince());
+        response.append(city.getProvTerrCode());
         if (cities.indexOf(city) < cities.size()) response.append("\n");
         return response.toString();
     }
     public void add(CityModel city) {
         client.add(city);
     }
-    public void edit(String id, CityModel update) {
+    public void edit(int id, CityModel update) {
         client.edit(id, update);
     }
     @Override

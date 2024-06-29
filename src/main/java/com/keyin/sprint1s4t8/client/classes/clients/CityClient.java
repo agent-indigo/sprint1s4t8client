@@ -50,7 +50,7 @@ public final class CityClient extends Client {
         }
     }
     public String edit(
-        String id,
+        int id,
         CityModel update
     ) {
         this.address = address + id;
