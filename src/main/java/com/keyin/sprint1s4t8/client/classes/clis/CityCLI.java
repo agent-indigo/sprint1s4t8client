@@ -23,7 +23,7 @@ public final class CityCLI extends CLI {
             response.append(city.getName());
             response.append(",");
             response.append(city.getProvince());
-            if (cities.indexOf(city) != cities.size() - 1) response.append("\n");
+            if (cities.indexOf(city) < cities.size()) response.append("\n");
         }
         return response.toString();
     }
@@ -35,6 +35,7 @@ public final class CityCLI extends CLI {
         response.append(city.getName());
         response.append(",");
         response.append(city.getProvince());
+        if (cities.indexOf(city) < cities.size()) response.append("\n");
         return response.toString();
     }
     public void add(CityModel city) {
@@ -57,6 +58,7 @@ public final class CityCLI extends CLI {
                     response.append(airport.getName());
                     response.append(",");
                     response.append(airport.getCode());
+                    if (airports.indexOf(airport) < airports.size()) response.append("\n");
                 }
             }
         }
