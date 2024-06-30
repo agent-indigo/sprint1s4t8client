@@ -48,4 +48,8 @@ public final class AirportModel extends Model {
     public void deletePassenger(int index) {
         passengers.remove(index);
     }
+
+    public LinkedList<AircraftModel> getAircrafts() {
+        return null;
+    }
 }
