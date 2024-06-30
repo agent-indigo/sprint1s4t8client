@@ -1,4 +1,4 @@
-//AircraftModelClient
+//AircraftClient
 package com.keyin.sprint1s4t8.client.classes.clients;
 
 import com.keyin.sprint1s4t8.client.classes.abstracts.Client;
@@ -11,11 +11,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-public final class AircraftModelClient extends Client {
+public final class AircraftClient extends Client {
     private AircraftModel aircraft;
     private List<AircraftModel> aircrafts;
 
-    public AircraftModelClient() {
+    public AircraftClient() {
         super("aircrafts");
     }
 

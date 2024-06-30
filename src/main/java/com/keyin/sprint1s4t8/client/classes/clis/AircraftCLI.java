@@ -1,20 +1,20 @@
-//AircraftModelCLI
+//AircraftCLI
 package com.keyin.sprint1s4t8.client.classes.clis;
 
 import com.keyin.sprint1s4t8.client.classes.models.AircraftModel;
 import com.keyin.sprint1s4t8.client.classes.abstracts.CLI;
-import com.keyin.sprint1s4t8.client.classes.clients.AircraftModelClient;
+import com.keyin.sprint1s4t8.client.classes.clients.AircraftClient;
 
 import java.util.List;
 
-public final class AircraftModelCLI extends CLI {
-    private AircraftModelClient client;
+public final class AircraftCLI extends CLI {
+    private AircraftClient client;
     private AircraftModel aircraft;
     private List<AircraftModel> aircrafts;
 
-    public AircraftModelCLI() {
+    public AircraftCLI() {
         super();
-        this.client = new AircraftModelClient();
+        this.client = new AircraftClient();
         this.aircrafts = client.list();
     }
 
